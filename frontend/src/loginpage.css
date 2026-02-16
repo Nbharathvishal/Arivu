@@ -1,0 +1,251 @@
+
+
+:root{
+  --bg: #f6eaa1;
+  --panel-bg: rgba(255,255,255,0.06);
+  --panel-border: rgba(255,255,255,0.06);
+  --accent: #d4efef;
+  --muted: #1b1b1b;
+  --bg-url: url('./loginPageImage.png');
+}
+*{box-sizing:border-box}
+html,body,#root{height:100%;margin:0;padding:0;font-family:"Open Sans",system-ui,Segoe UI,Arial,sans-serif}
+
+/* container */
+.login-page{
+  
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  overflow: hidden;
+  background: none; /* background handled in .bg-layer */
+}
+.form-group{
+  color: black;
+}
+
+
+.animated-bg::before{
+ content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--bg-url);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% center; /* start left */
+  z-index: 0;
+  transform: translateZ(0);
+ 
+  animation: bgSlide 18s linear infinite alternate;
+  
+  filter: none;
+}
+
+/* subtle second layer for parallax depth (slower movement) */
+.animated-bg::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  
+  background-image: var(--bg-url);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% center;
+  z-index: 0;
+          
+  
+  transform: translateZ(0);
+  
+  
+  
+  
+}
+
+@keyframes bgSlide {
+  0% { background-position: 40% center; }
+  100% { background-position: 60% center; }
+}
+@keyframes bgSlideAlt {
+  0% { background-position: 60% center; }
+  100% { background-position: left center; }
+}
+
+
+.login-page::before{
+  content: "";
+  position:absolute; inset:0; z-index:1;
+  background: transparent;
+  background: linear-gradient(180deg, rgba(0,0,0,0.12), rgba(0,0,0,0.18));
+}
+
+/* ensure UI sits above background and overlay */
+.login-wrap, .login-panel, .login-form, .login-title { position: relative; z-index: 2; }
+
+.bubbles { position:absolute; inset:0; pointer-events:none; z-index:1; }
+.bubble { position:absolute; border-radius:50%; background: rgba(255,255,255,0.06); filter: blur(6px); mix-blend-mode: overlay; }
+.b1 { width:260px;height:260px; left:6%; top:12%; opacity:0.12; animation:floaty 22s ease-in-out infinite;}
+.b2 { width:110px;height:110px; left:28%; top:6%; opacity:0.10; animation:floaty 18s ease-in-out infinite;}
+.b3 { width:160px;height:160px; right:8%; top:18%; opacity:0.11; animation:floaty 26s ease-in-out infinite;}
+.b4 { width:80px;height:80px; left:55%; bottom:8%; opacity:0.09; animation:floaty 14s ease-in-out infinite;}
+.b5 { width:300px;height:300px; right:-5%; bottom:-10%; opacity:0.07; animation:floaty 26s ease-in-out infinite;}
+@keyframes floaty { 0% { transform: translateY(0) scale(1); } 50% { transform: translateY(-36px) scale(1.02); } 100% { transform: translateY(0) scale(1); } }
+
+/* wrapper & panel */
+.login-wrap { position:relative; z-index:2; width:100%; max-width:960px; display:flex; justify-content:center; padding:20px; }
+
+/* panel initially positioned off-screen to the right; when the page has .login-entrance class it will animate in */
+.login-panel {
+  width:420px;
+  background: var(--panel-bg);
+  border-radius:8px;
+  padding:26px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+  border: 1px solid var(--panel-border);
+  backdrop-filter: blur(4px);
+  z-index:3;
+
+  /* off screen start */
+  transform: translateX(110%);
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+/* when entrance triggered, slide panel from right -> left */
+.login-entrance .login-panel {
+  animation: panelSlideIn 720ms cubic-bezier(.22,.9,.3,1) forwards;
+  animation-delay: 220ms;
+}
+@keyframes panelSlideIn {
+  0% { transform: translateX(110%); opacity: 0; filter: blur(6px); }
+  60% { transform: translateX(-6%); opacity: 1; filter: blur(1px); }
+  100% { transform: translateX(0%); opacity: 1; filter: none; }
+}
+
+/* title */
+.login-title { margin:0 0 8px 0; font-family:"Playfair Display", serif; font-size:1.6rem; color:var(--muted); text-align:center; }
+
+/* form and inputs (kept mostly from your CSS) */
+.login-form {
+  color: #1b1d1d; 
+  display:flex; 
+  flex-direction:column; 
+  gap:12px;
+ }
+.form-row { display:flex; align-items:center; gap:12px; }
+.label-left { width:120px; text-align:right; color:var(--muted); font-weight:600; }
+.pw-wrapper { position:relative; flex:1; display:flex; align-items:center; }
+.pw-wrapper .input { padding-right:48px; }
+.input { width:100%; padding:10px 12px; border-radius:6px; border:1px solid rgba(0,0,0,0.06); background: rgba(223, 218, ); color:#161313; outline:none; transition: box-shadow .12s, transform .08s; font-size:14px; }
+.input::placeholder{ color: rgba(0,0,0,0.35); }
+.input:focus { box-shadow: 0 8px 20px rgba(0,0,0,0.08); transform: translateY(-1px); border-color: var(--accent); }
+.show-btn { position:absolute; right:8px; top:50%; transform: translateY(-50%); background:transparent; border:none; cursor:pointer; font-size:16px; }
+.row-between { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-top:6px; }
+.remember { display:flex; align-items:center; gap:8px; color:var(--muted); font-size:14px; }
+.forgot { text-decoration:underline; font-size:14px; }
+.form-error { color:#c83333; background: rgba(255,0,0,0.04); padding:8px; border-radius:6px; text-align:center; }
+.btn.login-cta { margin-top:8px; width:100%; padding:12px; border-radius:8px; border:none; font-weight:700; background: linear-gradient(90deg,#6e7b7b,#7fffd4); color:#042323; cursor:pointer; letter-spacing:1.5px; transition: transform .12s ease, box-shadow .12s ease; }
+.btn.login-cta:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.12); }
+.alt-line{ text-align:center; margin-top:12px; color:black; font-size:14px; }
+.linkish{ color:var(--muted); text-decoration:underline; cursor:pointer; }
+
+/* stagger inner form elements -- delay only takes effect when .login-entrance present */
+.login-entrance .login-panel .login-form > * { opacity:0; transform: translateX(18px); }
+.login-entrance .login-panel .login-form > *:nth-child(1) { animation: itemIn .42s ease forwards; animation-delay: .36s; }
+.login-entrance .login-panel .login-form > *:nth-child(2) { animation: itemIn .42s ease forwards; animation-delay: .48s; }
+.login-entrance .login-panel .login-form > *:nth-child(3) { animation: itemIn .42s ease forwards; animation-delay: .60s; }
+.login-entrance .login-panel .login-form > *:nth-child(4) { animation: itemIn .42s ease forwards; animation-delay: .72s; }
+.login-entrance .login-panel .login-form > *:nth-child(5) { animation: itemIn .42s ease forwards; animation-delay: .84s; }
+@keyframes itemIn { to { opacity:1; transform: translateX(0); } }
+
+/* responsive */
+@media (max-width:520px){ .login-panel{ width:92%; padding:18px;} .label-left{ width:110px; text-align:left; } .form-row{ flex-direction:column; align-items:stretch; gap:8px;} .bubble{ display:none;} }
+
+/* Respect user pref for reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .animated-bg::before, .animated-bg::after, .login-entrance .login-panel, .login-entrance .login-panel .login-form > * {
+    animation: none !important; transition: none !important; transform: none !important; opacity: 1 !important;
+  }
+}
+
+/* =============== ENTRANCE TRIGGER CLASSES =============== */
+
+/* Panel (form) entrance — right → left */
+.login-page.enter .login-panel {
+  animation: panelSlideIn 720ms cubic-bezier(.22, .9, .3, 1) forwards;
+  animation-delay: 180ms;
+}
+
+/* Background initial nudge (left → right once) + then infinite movement */
+.login-page.enter.animated-bg::before {
+  animation: 
+      bgSlideOnce 900ms ease-out forwards,
+      bgLoop 18s linear 1s infinite alternate;
+}
+
+.login-page.enter.animated-bg::after {
+  animation: 
+      bgSlideAltOnce 1100ms ease-out forwards,
+      bgLoopAlt 26s linear 1s infinite alternate;
+}
+
+/* Pause animations when window/tab hidden */
+.paused-anim .animated-bg::before,
+.paused-anim .animated-bg::after,
+.paused-anim .login-panel,
+.paused-anim .login-panel .login-form > * {
+  animation-play-state: paused !important;
+}
+
+
+@keyframes bgSlideOnce {
+  0%   { background-position: 40% center; }
+  100% { background-position: 60% center; }
+}
+
+@keyframes bgSlideAltOnce {
+  0%   { background-position: 60% center; }
+  100% { background-position: 40% center; }
+}
+
+@keyframes bgLoop {
+  0%   { background-position: 40% center; }
+  100% { background-position: 60% center; }
+}
+
+@keyframes bgLoopAlt {
+  0%   { background-position: 60% center; }
+  100% { background-position: 40% center; }
+}
+
+@keyframes panelSlideIn {
+  0%   { transform: translateX(110%); opacity: 0; filter: blur(6px); }
+  60%  { transform: translateX(-6%); opacity: 1; filter: blur(1px); }
+  100% { transform: translateX(0); opacity: 1; filter: none; }
+}
+
+.form-group {
+  
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-weight: 600;
+ 
+  font-size: 14px;
+}
+
+.forgot {
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 14px;
+  
+}
+

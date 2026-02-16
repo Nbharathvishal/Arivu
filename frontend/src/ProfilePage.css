@@ -1,0 +1,274 @@
+/* ProfilePage.css */
+
+.profile-page-container {
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: relative;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.profile-overlay {
+  background: rgba(0, 0, 0, 0.4);
+  /* Dark overlay for text readability */
+  min-height: 100vh;
+  padding: 2rem;
+  backdrop-filter: blur(4px);
+}
+
+/* Header */
+.profile-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.profile-avatar-wrapper {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 1.5rem;
+  border-radius: 50%;
+  border: 4px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.profile-avatar-wrapper:hover {
+  transform: scale(1.05);
+}
+
+.profile-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  font-size: 1.5rem;
+  padding: 5px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.profile-avatar-wrapper:hover .avatar-overlay {
+  opacity: 1;
+}
+
+.profile-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.profile-subtitle {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  margin-top: 0.5rem;
+}
+
+/* Layout Container */
+.profile-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.profile-row-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  /* Center the top cards */
+  gap: 2rem;
+}
+
+.profile-row-top>.profile-card {
+  flex: 1 1 400px;
+  /* Grow, shrink, base 400px */
+  max-width: 600px;
+  /* Prevent too wide */
+}
+
+/* Glass Cards */
+.profile-card {
+  background: rgba(255, 255, 255, 0.85);
+  /* Light glass */
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.profile-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+.card-heading {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* Space between title and button */
+  gap: 10px;
+}
+
+.section-edit-btn {
+  background: #4facfe;
+  color: white;
+  border: none;
+  padding: 6px 16px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 6px rgba(79, 172, 254, 0.3);
+}
+
+.section-edit-btn:hover {
+  background: #00f2fe;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 242, 254, 0.3);
+}
+
+.section-edit-btn.saving {
+  background: #00c853;
+  /* Green for save */
+  box-shadow: 0 4px 6px rgba(0, 200, 83, 0.3);
+}
+
+.section-edit-btn.saving:hover {
+  background: #00e676;
+}
+
+/* Content internal grid */
+.card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.card-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Input Groups */
+.input-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-read,
+.input-edit {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.2s;
+  background: transparent;
+  border: 1px solid transparent;
+  color: #222;
+}
+
+/* Read Mode: looks like plain text but slightly styled */
+.input-read {
+  font-weight: 600;
+  background: rgba(0, 0, 0, 0.03);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.input-read.locked {
+  color: #666;
+  background: rgba(0, 0, 0, 0.02);
+  cursor: not-allowed;
+}
+
+/* Edit Mode: looks like an input */
+.input-edit {
+  background: white;
+  border: 2px solid #4facfe;
+  box-shadow: 0 0 0 4px rgba(79, 172, 254, 0.1);
+  outline: none;
+}
+
+/* Icons */
+.icon-btn {
+  margin-left: 10px;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+  opacity: 0.6;
+}
+
+.icon-btn:hover {
+  transform: scale(1.2);
+  opacity: 1;
+}
+
+.lock-icon {
+  margin-left: 10px;
+  opacity: 0.4;
+}
+
+.error-banner {
+  background: #ff4d4d;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  font-weight: bold;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .profile-title {
+    font-size: 2rem;
+  }
+
+  .profile-grid {
+    grid-template-columns: 1fr;
+  }
+}

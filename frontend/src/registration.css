@@ -1,0 +1,148 @@
+
+
+:root{
+  --g-top: #8fd07f;     /* top green */
+  --g-bottom: #4aa64b;  /* bottom green */
+  --panel-bg: rgba(0,0,0,0.22);    /* darker translucent panel */
+  --panel-border: rgba(255,255,255,0.04);
+  --input-bg: rgba(255,255,255,0.02);
+  --input-border: rgba(255,255,255,0.06);
+  --cta-bg: rgba(255,255,255,0.12);
+  --muted: rgba(255,255,255,0.9);
+}
+
+/* reset */
+*{box-sizing:border-box}
+html,body,#root{height:100%;margin:0;padding:0;font-family:"Open Sans", Arial, sans-serif}
+
+/* page background */
+.signup-page{
+  min-height:100vh;
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:40px 20px;
+  position:relative;
+  overflow:hidden;
+  background: linear-gradient(180deg, var(--g-top), var(--g-bottom));
+}
+
+/* decorative bubbles behind panel */
+.bubbles{ position:absolute; inset:0; pointer-events:none; z-index:0 }
+.bubble{ position:absolute; border-radius:50%; background: rgba(255,255,255,0.06); filter: blur(6px); mix-blend-mode:overlay; }
+
+/* tune sizes/placement to match image */
+.b1{ width:260px;height:260px; left:6%; top:12%; opacity:0.10; animation:floaty 22s ease-in-out infinite; }
+.b2{ width:110px;height:110px; left:28%; top:6%; opacity:0.09; animation:floaty 18s ease-in-out infinite; }
+.b3{ width:160px;height:160px; right:8%; top:18%; opacity:0.10; animation:floaty 26s ease-in-out infinite; }
+.b4{ width:80px;height:80px; left:55%; bottom:8%; opacity:0.08; animation:floaty 14s ease-in-out infinite; }
+.b5{ width:320px;height:320px; right:-6%; bottom:-8%; opacity:0.06; animation:floaty 28s ease-in-out infinite; }
+
+@keyframes floaty {
+  0%{ transform:translateY(0) scale(1) }
+  50%{ transform:translateY(-36px) scale(1.02) }
+  100%{ transform:translateY(0) scale(1) }
+}
+
+/* layout wrapper */
+.signup-wrap{ position:relative; z-index:5; width:100%; max-width:980px; display:flex; flex-direction:column; align-items:center; gap:28px; }
+
+/* heading */
+.headline{
+  font-family:"Playfair Display", serif;
+  font-size:34px;
+  color:var(--muted);
+  letter-spacing:2px;
+  margin:0;
+  text-align:center;
+  padding-top:8px;
+}
+
+/* panel — darker translucent rectangle like Colorlib sample */
+.signup-panel{
+  
+  width:420px;
+  max-width:calc(100% - 40px);
+  background: var(--panel-bg);
+  border:1px solid var(--panel-border);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+  padding:36px 32px;
+  border-radius:2px;
+  z-index:6;
+  display:flex;
+  justify-content:center;
+  backdrop-filter: blur(3px);
+}
+
+/* form layout */
+.signup-form{
+   width:100%; 
+   display:flex; 
+   flex-direction:column;
+   gap:12px;
+   color: black;
+
+}
+
+/* styled thin input boxes */
+.input{
+  width:100%;
+  padding:12px 14px;
+  border-radius:2px;
+  border:1px solid var(--input-border);
+  
+  color:var(--muted);
+  outline:none;
+  font-size:14px;
+  
+  
+  transition: box-shadow .12s ease, transform .08s ease, border-color .12s ease;
+}
+.input::placeholder{ color: rgba(208, 196, 196, 0.55); }
+.input:focus{
+  border-color: rgba(255,255,255,0.14);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  transform: translateY(-1px);
+}
+
+/* terms row */
+.terms{ display:flex; align-items:center; gap:10px; color:rgba(255,255,255,0.9); font-size:13px; margin-top:6px; }
+
+/* error */
+.form-error{ color:#ffd6d6; background: rgba(255,0,0,0.03); padding:8px; border-radius:4px; font-size:13px }
+
+/* CTA — wide green bar like sample */
+.cta{
+  margin-top:8px;
+  width:100%;
+  padding:12px 16px;
+  background: rgba(255,255,255,0.12);
+  border:1px solid rgba(255,255,255,0.06);
+  color:#052d08; /* dark text inside pale button */
+  font-weight:700;
+  letter-spacing:4px;
+  font-size:14px;
+  cursor:pointer;
+  transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+}
+.cta:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.16);
+  background: rgba(255,255,255,0.18);
+}
+
+/* login line */
+.login-line{ text-align:center; 
+   color:rgba(16, 15, 15, 0.92); font-size:13px }
+.linkish{ all:unset; cursor:pointer; color:rgba(255,255,255,0.95); text-decoration:underline; margin-left:6px; font-weight:600 }
+
+/* footer */
+.signup-footer{ color:rgba(255,255,255,0.9); font-size:12px; margin-top:8px; opacity:0.9 }
+
+/* responsive */
+@media (max-width:540px){
+  .headline{ font-size:22px; }
+  .signup-panel{ width:92%; padding:20px; }
+  .bubble{ display:none } /* hide bubbles for performance */
+}

@@ -1,0 +1,354 @@
+/* documentpage.css */
+
+.document-page {
+  min-height: 100vh;
+  padding: 24px 40px;
+  box-sizing: border-box;
+  background: #eef2f7; /* change to bg image later if you want */
+  display: flex;
+  flex-direction: column;
+}
+
+/* header */
+
+.doc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 16px;
+}
+
+.doc-title {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1f2933;
+}
+
+.doc-subtitle {
+  margin: 4px 0 0;
+  font-size: 0.95rem;
+  color: #6b7280;
+}
+
+/* shell */
+
+.doc-shell {
+    
+  flex: 1;
+  display:flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 14px;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18);
+  padding: 16px 18px 20px;
+}
+
+/* tabs */
+
+.doc-tabs {
+  display: inline-flex;
+  gap: 8px;
+  padding: 4px;
+  background: #e5e7eb;
+  border-radius: 999px;
+  align-self: flex-start;
+}
+
+.doc-tab {
+  border: none;
+  background: transparent;
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #4b5563;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.doc-tab.active {
+  background: #111827;
+  color: #f9fafb;
+}
+
+/* content area */
+
+.doc-content {
+  margin-top: 16px;
+  flex: 1;
+  border-radius: 12px;
+  background: rgba(249, 250, 251, 0.9);
+  padding: 18px;
+  overflow: auto;
+}
+
+/* empty state */
+
+.doc-empty {
+  text-align: center;
+  padding: 40px 16px;
+}
+
+.doc-empty-title {
+  font-size: 1.1rem;
+  margin: 0 0 6px;
+  color: #111827;
+}
+
+.doc-empty-text {
+  margin: 0;
+  color: #6b7280;
+  font-size: 0.95rem;
+}
+
+/* grid & cards */
+
+.doc-grid { 
+   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.doc-card {
+  background: white;
+  border-radius: 12px;
+  padding: 14px 14px 12px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.09);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.doc-card-header {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.doc-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  background: #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.doc-card-title {
+  margin: 0;
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.doc-card-meta {
+  margin: 2px 0 0;
+  font-size: 0.8rem;
+  color: #6b7280;
+  max-width: 100%;
+  overflow:hidden;
+  text-overflow: ellipsis; /* shows ... instead of breaking out */
+  white-space: nowrap;
+  display: block;
+}
+
+.doc-card-note {
+  margin: 4px 0 0;
+  font-size: 0.85rem;
+  color: #4b5563;
+}
+
+.doc-card-date {
+  margin: 4px 0 0;
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+.doc-card-actions {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* buttons */
+
+.doc-btn {
+  border: none;
+  outline: none;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.doc-btn.primary {
+  background: #111827;
+  color: #f9fafb;
+}
+
+.doc-btn.secondary {
+  background: #e5e7eb;
+  color: #111827;
+}
+
+.doc-btn.danger {
+  background: #fecaca;
+  color: #7f1d1d;
+}
+
+/* upload form */
+
+.upload-form {
+  
+  max-width: 520px;
+  background: white;
+  border-radius: 12px;
+  padding: 18px 18px 16px;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.1);
+}
+
+.form-row {
+  
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+}
+
+.form-label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #111827;
+}
+
+.form-input {
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  padding: 8px 10px;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.16s ease, box-shadow 0.16s ease;
+}
+
+.form-input:focus {
+  border-color: #111827;
+  box-shadow: 0 0 0 1px #11182722;
+}
+
+.textarea {
+  min-height: 68px;
+  resize: vertical;
+}
+
+/* file input */
+
+.file-input-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 6px 14px;
+  background: #111827;
+  color: #f9fafb;
+  font-size: 0.85rem;
+  cursor: pointer;
+  width: fit-content;
+  margin-top: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.file-input-label input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.file-hint {
+  margin: 4px 0 0;
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+/* error */
+
+.form-error {
+  margin: 4px 0 8px;
+  font-size: 0.85rem;
+  color: #b91c1c;
+  background: #fee2e2;
+  border-radius: 8px;
+  padding: 6px 8px;
+}
+.doc-card-meta {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;      /* or remove this if you want wrapping */
+}
+
+
+/* layout only for Upload tab */
+.upload-layout {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+/* left side – form should stretch nicely */
+.upload-form {
+  flex: 1;
+}
+
+/* right side – instructions card */
+.right-instructions {
+  flex: 1;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  height: fit-content;
+}
+
+.right-instructions h3 {
+  margin: 0 0 12px;
+  color: #111827;
+  font-size: 1rem;
+}
+
+.right-instructions ul {
+  margin: 0;
+  padding-left: 20px;
+  color: #4b5563;
+  font-size: 0.95rem;
+}
+
+.right-instructions li {
+  margin-bottom: 6px;
+}
+
+/* responsive */
+
+@media (max-width: 640px) {
+  .document-page {
+    padding: 16px;
+  }
+
+  .doc-shell {
+    padding: 12px 10px;
+  }
+
+  .upload-form {
+    max-width: 100%;
+  }
+}
