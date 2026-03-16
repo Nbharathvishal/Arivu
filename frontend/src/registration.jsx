@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./registration.css";
-import registerPageImage from "./images/registerPageImage.jpg";
+import registerPageImage from "./Images/registerPageImage.jpg";
 
 export default function Register() {
   const [form, setForm] = useState({ name: "", email: "", password: "", confirm: "" });
