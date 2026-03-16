@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, Link, useLocation } from "react-router-dom";
 import "./loginpage.css";
-import loginPageImage from './Images/login.jpg';
+import loginPageImage from './Images/Login.jpg';
 
 export default function Login() {
   const [email, setEmail] = useState("");
