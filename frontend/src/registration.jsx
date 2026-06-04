@@ -61,7 +61,7 @@ export default function Register() {
       localStorage.removeItem("user_token");
       localStorage.removeItem("user_data");
       alert("Registration successful! Please login.");
-      nav("/dashboard");
+      nav("/MainPage");
 
     } catch (err) {
       setError(err.message);
