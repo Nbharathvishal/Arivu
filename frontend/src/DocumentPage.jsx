@@ -1,6 +1,6 @@
 // DocumentPage.jsx
 import React, { useState, useEffect } from "react";
-import "./documentpage.css";
+import "./DocumentPage.css";
 
 function DocumentPage() {
   const [activeTab, setActiveTab] = useState("my"); // "my" | "upload" | "trash"

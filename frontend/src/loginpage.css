@@ -6,7 +6,7 @@
   --panel-border: rgba(255,255,255,0.06);
   --accent: #d4efef;
   --muted: #1b1b1b;
-  --bg-url: url('./loginPageImage.png');
+  --bg-url: url('./Images/loginPageImage.png');
 }
 *{box-sizing:border-box}
 html,body,#root{height:100%;margin:0;padding:0;font-family:"Open Sans",system-ui,Segoe UI,Arial,sans-serif}
