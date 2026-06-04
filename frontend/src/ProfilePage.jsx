@@ -151,9 +151,6 @@ function ProfilePage() {
     }
   };
 
-
-  if (loading) return <div className="loading">Loading profile...</div>;
-
   return (
     <div className="profile-page-container"
       style={{
@@ -186,7 +183,12 @@ function ProfilePage() {
         {error && <div className="error-banner">{error}</div>}
 
         {/* Main Content Grid */}
-        <div className="profile-grid">
+        {loading ? (
+          <div className="profile-loading-inline" style={{ textAlign: "center", color: "#1b1b1b", fontSize: "1.2rem", padding: "40px", background: "rgba(255,255,255,0.6)", borderRadius: "8px", backdropFilter: "blur(4px)", maxWidth: "600px", margin: "0 auto" }}>
+            Loading Profile Details...
+          </div>
+        ) : (
+          <div className="profile-grid">
 
           <div className="profile-row-top">
             {/* Card 1: Personal Details */}
@@ -420,7 +422,8 @@ function ProfilePage() {
             </div>
           </section>
 
-        </div>
+          </div>
+        )}
       </div>
     </div>
   );

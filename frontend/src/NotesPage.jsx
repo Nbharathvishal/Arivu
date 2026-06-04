@@ -178,8 +178,6 @@ function NotesPage() {
 
   const activeNote = notes.find((n) => n.id === activeId) || null;
 
-  if (loading) return <div className="loading">Loading Notes...</div>;
-
   return (
     <div className="notes-page">
       <header className="notes-header">
@@ -266,7 +264,11 @@ function NotesPage() {
               )}
             </div>
 
-            {filteredNotes.length === 0 ? (
+            {loading ? (
+              <div className="notes-loading-inline" style={{ textAlign: "center", padding: "40px", color: "var(--muted)", fontSize: "1.1rem" }}>
+                Loading Notes...
+              </div>
+            ) : filteredNotes.length === 0 ? (
               <div className="notes-empty">
                 <p className="notes-empty-title">No notes yet</p>
                 <p className="notes-empty-text">

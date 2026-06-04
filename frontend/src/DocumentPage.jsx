@@ -188,8 +188,6 @@ function DocumentPage() {
     }
   };
 
-  if (loading) return <div className="loading">Loading Documents...</div>;
-
   return (
     <div className="document-page">
       <header className="doc-header">
@@ -227,12 +225,18 @@ function DocumentPage() {
         {/* Content Area */}
         <div className="doc-content">
           {activeTab === "my" && (
-            <MyDocuments
-              docs={docs.filter((d) => !d.isTrashed)}
-              onDelete={handleDelete}
-              onDownload={handleDownload}
-              onView={handleView}
-            />
+            loading ? (
+              <div className="doc-loading-inline" style={{ textAlign: "center", padding: "40px", color: "var(--muted)", fontSize: "1.1rem" }}>
+                Loading Documents...
+              </div>
+            ) : (
+              <MyDocuments
+                docs={docs.filter((d) => !d.isTrashed)}
+                onDelete={handleDelete}
+                onDownload={handleDownload}
+                onView={handleView}
+              />
+            )
           )}
 
           {activeTab === "upload" && (
@@ -251,11 +255,17 @@ function DocumentPage() {
           )}
 
           {activeTab === "trash" && (
-            <TrashDocuments
-              docs={docs.filter((d) => d.isTrashed)}
-              onRestore={handleRestore}
-              onDeleteForever={handleDeleteForever}
-            />
+            loading ? (
+              <div className="doc-loading-inline" style={{ textAlign: "center", padding: "40px", color: "var(--muted)", fontSize: "1.1rem" }}>
+                Loading Trash...
+              </div>
+            ) : (
+              <TrashDocuments
+                docs={docs.filter((d) => d.isTrashed)}
+                onRestore={handleRestore}
+                onDeleteForever={handleDeleteForever}
+              />
+            )
           )}
         </div>
       </div>
