@@ -40,7 +40,7 @@ public class UserService {
         }
 
         // Check if email already exists
-        if (userRepository.findByEmail(user.getEmail()).isPresent()) {
+        if (!userRepository.findAllByEmail(user.getEmail()).isEmpty()) {
             throw new RuntimeException("Email already exists");
         }
 
