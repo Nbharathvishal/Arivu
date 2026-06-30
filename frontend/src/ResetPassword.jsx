@@ -14,7 +14,7 @@ function ResetPassword() {
 
   // safety
   if (!email) {
-    navigate("/login");
+    navigate("/Login");
     return null;
   }
 
@@ -36,7 +36,7 @@ function ResetPassword() {
     console.log("New password:", password);
 
     alert("Password changed successfully ✅");
-    navigate("/login");
+    navigate("/Login");
   };
 
   return (
