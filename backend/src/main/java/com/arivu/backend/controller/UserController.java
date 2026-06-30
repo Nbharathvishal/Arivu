@@ -26,7 +26,8 @@ public class UserController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String email = ((UserDetailsImpl) authentication.getPrincipal()).getEmail();
 
-        User user = userRepository.findByEmail(email).orElse(null);
+        java.util.List<User> users = userRepository.findAllByEmail(email);
+        User user = users.isEmpty() ? null : users.get(0);
         if (user == null) {
             return ResponseEntity.notFound().build();
         }
@@ -39,7 +40,8 @@ public class UserController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String email = ((UserDetailsImpl) authentication.getPrincipal()).getEmail();
 
-        User user = userRepository.findByEmail(email).orElse(null);
+        java.util.List<User> users = userRepository.findAllByEmail(email);
+        User user = users.isEmpty() ? null : users.get(0);
         if (user == null) {
             return ResponseEntity.notFound().build();
         }

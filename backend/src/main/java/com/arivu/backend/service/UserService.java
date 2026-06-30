@@ -22,7 +22,7 @@ public class UserService {
     }
 
     public boolean existsByEmail(String email) {
-        return userRepository.findByEmail(email).isPresent();
+        return !userRepository.findAllByEmail(email).isEmpty();
     }
 
     public User register(User user) {
