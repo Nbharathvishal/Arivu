@@ -35,7 +35,7 @@ function User() {
 
           <div className="else">
             <h5>-------Or--------</h5>
-            <Link to="/Login" className="log">
+            <Link to="/login" className="log">
               <button className="btn ghost">Login</button>
             </Link>
           </div>

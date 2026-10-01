@@ -30,7 +30,7 @@ function MainPage() {
               // Clear session
               localStorage.removeItem("user_token");
               localStorage.removeItem("user_data");
-              navigate("/Login");
+              navigate("/login");
             }}
             title="Logout"
             style={{
